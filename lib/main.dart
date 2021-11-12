@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:cube/view/screen/all_screen.dart';
+import 'package:cube/view/screen/screen.dart';
 
 void main() {
   runApp(const CubeApp());

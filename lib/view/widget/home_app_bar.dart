@@ -3,6 +3,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // ignore: use_key_in_widget_constructors
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -40,13 +41,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                         // textAlignVertical: TextAlignVertical.center,
                         decoration: InputDecoration(
                           focusColor: Colors.green,
-                          prefixIcon: Icon(Icons.search),
+                          prefixIcon: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 8.0, vertical: 15.0),
+                            child: FaIcon(FontAwesomeIcons.search,
+                                size: 20, color: Colors.black54),
+                          ),
                           // labelText: 'Search',
                           filled: true,
                           fillColor: Colors.white38,
                           border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black38),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(15.0))),
+                                  BorderRadius.all(Radius.circular(25.0))),
                           hintText: 'search',
                           hintStyle: TextStyle(
                             color: Colors.black54,
