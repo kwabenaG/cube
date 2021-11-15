@@ -1,2 +1,2 @@
 // handles all the screens
-export '../pages/home.dart';
+export '../pages/home_page.dart';

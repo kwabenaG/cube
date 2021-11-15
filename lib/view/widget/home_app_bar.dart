@@ -1,12 +1,20 @@
 // handles the home app bar widget
 
-// ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+// local imports
+import 'package:cube/controller/home_controller.dart';
 
 // ignore: use_key_in_widget_constructors
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  // const CustomAppBar({Key? key, required this.drawer}) : super(key: key);
+
+  final SearchTextController searchBar = Get.put(SearchTextController());
+
+  //end text controller for search bar
+
   @override
   Size get preferredSize => const Size.fromHeight(190.0);
 
@@ -16,7 +24,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       preferredSize: Size(MediaQuery.of(context).size.width, 60.0),
       // preferredSize: preferredSize,
       child: Container(
-          color: Colors.black12,
+          color: Colors.black26,
           child: SafeArea(
             // bottom: true,
             child: Row(
@@ -25,28 +33,44 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        vertical: 4.0, horizontal: 4.0),
+                        vertical: 2.0, horizontal: 4.0),
                     child: IconButton(
                         iconSize: 25.0,
                         icon: const Icon(Icons.menu_outlined),
-                        onPressed: () => {print('Menu button pressed')}),
+                        onPressed: () {
+                          draw(context);
+                        }),
                   ),
-                  const SizedBox(
+                  SizedBox(
+                    // for textfield
                     height: 70.0,
                     width: 300.0,
                     child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 4.0, vertical: 10.0),
-                      child: TextField(
-                        // textAlignVertical: TextAlignVertical.center,
-                        decoration: InputDecoration(
-                          focusColor: Colors.green,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 4.0, vertical: 15.0),
+                      child: TextFormField(
+                        // onChanged:
+                        onTap: () {
+                          print('tapped');
+                        },
+                        controller: searchBar.searchController,
+                        decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(vertical: 10),
                           prefixIcon: Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 8.0, vertical: 15.0),
+                                horizontal: 8.0, vertical: 12.0),
                             child: FaIcon(FontAwesomeIcons.search,
-                                size: 20, color: Colors.black54),
+                                size: 15, color: Colors.black54),
                           ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(25.0)),
+                            borderSide: BorderSide(
+                              color: Colors.blue,
+                              // width: 2.0,
+                            ),
+                          ),
+
                           // labelText: 'Search',
                           filled: true,
                           fillColor: Colors.white38,
@@ -56,8 +80,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                                   BorderRadius.all(Radius.circular(25.0))),
                           hintText: 'search',
                           hintStyle: TextStyle(
+                            decoration: TextDecoration.none,
                             color: Colors.black54,
                             fontSize: 18.0,
+                            decorationStyle: TextDecorationStyle.solid,
                           ),
                         ),
                       ),
@@ -67,4 +93,32 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           )),
     );
   }
+}
+
+Widget draw(context) {
+  return Drawer(
+    child: ListView(
+      padding: EdgeInsets.zero,
+      children: <Widget>[
+        ListTile(
+          title: const Text('Item 1'),
+          onTap: () {
+            // Update the state of the app
+            // ...
+            // Then close the drawer
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          title: const Text('Item 2'),
+          onTap: () {
+            // Update the state of the app
+            // ...
+            // Then close the drawer
+            Navigator.pop(context);
+          },
+        ),
+      ],
+    ),
+  );
 }

@@ -1,15 +1,16 @@
 // handles the home screen
 // ignore_for_file: avoid_print
 
-import 'package:cube/view/pages/event.dart';
 import 'package:flutter/material.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 // import 'package:google_fonts/google_fonts.dart';
 
 // local imports
-import 'package:cube/view/widget/home_app_bar.dart';
-import 'package:cube/view/widget/home_page_view.dart';
+import 'package:cube/view/widget/home_app_bar.dart'; // contains the app bar
+import 'package:cube/view/widget/home_page_view.dart'; // contains the home page view
+import 'package:cube/view/pages/event.dart'; // contains the event page
+import 'package:cube/view/pages/user.dart'; // contains the user page
 
 // controllers
 import '../../controller/counter_controller.dart';
@@ -25,19 +26,24 @@ class HomeScreen extends StatelessWidget {
 
   // --- controller class instance end here ---
 
+  //drawer global key
+  final GlobalKey<ScaffoldState> _drawerKey = GlobalKey<ScaffoldState>();
+
+  void _openDrawer() {
+    _drawerKey.currentState!.openDrawer();
+  }
+
   void something() {
     print('follow club');
   }
-  // List<Widget> getActiveScreenFromController() {
-  //   var selectedPage = activePage.screens.asMap().entries.map((MapEntry e) => e.value).toList();
 
-  //    return selectedPage;
-  // }
-  List<Widget> screenList = const [HomePageWidget(), Event()];
+  final List<Widget> screenList = const [HomePageWidget(), Event(), UserPage()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _drawerKey,
+      drawer: const Drawer(child: Text('drawer')),
       appBar: CustomAppBar(),
       body: Container(
           child: Obx(() => screenList[activePage.currentPageIndex.value])),

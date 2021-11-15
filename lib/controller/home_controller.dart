@@ -11,3 +11,32 @@ class HomePageViewController extends GetxController {
     currentPageIndex.value = index;
   }
 }
+
+class SearchTextController extends GetxController {
+  // text controller for the search bar
+  final searchClubInfo = ''.obs;
+
+  void searchTextChange(String text) {
+    searchClubInfo.value = text;
+  }
+
+  GlobalKey<ScaffoldState> searchBarKey = GlobalKey<ScaffoldState>();
+  // text controller for the search bar
+  late final TextEditingController searchController;
+
+  @override
+  void onInit() {
+    super.onInit();
+    searchController = TextEditingController(); // initializing the controller
+  }
+
+  // @override
+  // void onReady() {
+  //   super.onReady();
+  // }
+
+  @override
+  void onClose() {
+    searchController.dispose(); // dispose the search text controller
+  }
+}
