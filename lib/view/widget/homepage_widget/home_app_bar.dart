@@ -11,7 +11,10 @@ import 'package:cube/controller/home_controller.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   // const CustomAppBar({Key? key, required this.drawer}) : super(key: key);
 
-  final SearchTextController searchBar = Get.put(SearchTextController());
+  final SearchTextController searchBar =
+      Get.put(SearchTextController()); // search bar
+  final SearchBarTimes searchTimes =
+      Get.put(SearchBarTimes()); // search bar times
 
   //end text controller for search bar
 
@@ -54,15 +57,26 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                           print('tapped');
                         },
                         controller: searchBar.searchController,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(vertical: 10),
-                          prefixIcon: Padding(
+                        decoration: InputDecoration(
+                          contentPadding:
+                              const EdgeInsets.symmetric(vertical: 10),
+                          suffixIcon: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0, vertical: 1.0),
+                            child: IconButton(
+                              // ignore: avoid_print
+                              onPressed: () {},
+                              icon: const FaIcon(FontAwesomeIcons.times,
+                                  size: 15, color: Colors.black54),
+                            ),
+                          ),
+                          prefixIcon: const Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 8.0, vertical: 12.0),
                             child: FaIcon(FontAwesomeIcons.search,
                                 size: 15, color: Colors.black54),
                           ),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(25.0)),
                             borderSide: BorderSide(
@@ -74,12 +88,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                           // labelText: 'Search',
                           filled: true,
                           fillColor: Colors.white38,
-                          border: OutlineInputBorder(
+                          border: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.black38),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(25.0))),
                           hintText: 'search',
-                          hintStyle: TextStyle(
+                          hintStyle: const TextStyle(
                             decoration: TextDecoration.none,
                             color: Colors.black54,
                             fontSize: 18.0,
